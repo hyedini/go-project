@@ -11,16 +11,19 @@ import (
 
 func Firebase() {
 	// SDK key
-	opt := option.WithCredentialsFile("key.json")
+	opt := option.WithCredentialsFile("db/key.json")
+
+	config := &firebase.Config{ProjectID: "<FIREBASE_PROJECT_ID>"}
+	println("[HJLOG] config : ", config)
 
 	var app, err = firebase.NewApp(context.Background(), nil, opt)
-	fmt.Printf("HJLOG : app : %s , err : %s\n", app, err)
+	fmt.Printf("[HJLOG] app : %s , err : %s\n", app, err)
 	if err != nil {
 		log.Fatalf("error initializing app: %v\n", err)
 	}
 
 	client, err := app.Auth(context.Background())
-	fmt.Printf("HJLOG : client : %s , err : %s\n", client, err)
+	fmt.Printf("[HJLOG] client : %s , err : %s\n", client, err)
 	if err != nil {
 		log.Fatalf("error getting Auth client: %v\n", err)
 	}
